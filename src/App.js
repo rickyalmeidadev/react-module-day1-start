@@ -1,41 +1,52 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
-class App extends Component {
-  render() {
-    const formatName = user => {
-      return `${user.firstName} ${user.lastName}`;
-    };
+const App = () => {
+  const users = [
+    {
+      firstName: 'Carlao',
+      lastName: 'Andrade',
+      avatarUrl: 'http://kodlamaker.com/wp-content/themes/eduma/images/image-404.jpg',
+    },
 
-    const user = {
-      firstName: 'Harper',
-      lastName: 'Perez',
+    {
+      firstName: 'Andrade',
+      lastName: 'Drummond',
       avatarUrl: '',
-    };
+    },
 
-    const displayAvartar = user => {
-      if (user.avatarUrl) {
-        return <img src={user.avatarUrl} />;
-      }
-      return (
-        <img
-          src="https://s3.amazonaws.com/owler-image/logo/ironhack_owler_20180828_221413_original.png"
-          width="300"
-          height="300"
-        />
-      );
-    };
+    {
+      firstName: 'Ricky',
+      lastName: 'Almeida',
+      avatarUrl: '',
+    },
+  ];
 
-    const element = <h2>Hello, {formatName(user)}!</h2>;
-
+  const displayAvatar = user => {
+    if (user.avatarUrl) {
+      return <img src={user.avatarUrl} width="300" height="300" />;
+    }
     return (
-      <div className="App">
-        <h1> Hello Ironhackers! </h1>
-        {element}
-        {displayAvartar(user)}
-      </div>
+      <img
+        src="https://s3.amazonaws.com/owler-image/logo/ironhack_owler_20180828_221413_original.png"
+        width="300"
+        height="300"
+      />
     );
-  }
-}
+  };
+
+  const formatName = user => `${user.firstName} ${user.lastName}`;
+
+  return (
+    <div className="App">
+      {users.map(user => (
+        <div>
+          <h1>Hello Ironhackers! {formatName(user)}</h1>
+          {displayAvatar(user)}
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default App;
